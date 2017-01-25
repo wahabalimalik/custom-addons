@@ -20,4 +20,4 @@
     'data': [
         'views/views.xml',
     ],
-}
+} 

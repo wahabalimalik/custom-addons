@@ -1,0 +1,64 @@
+<openerp>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="loan.list">
+      <field name="name">loan list</field>
+      <field name="model">loan.loan</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="employee"/>
+          <field name="date"/>
+          <field name="department"/>
+          <field name="description"/>
+          <field name="amount"/>
+          <field name="returned"/>
+          <field name="net"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="loan.tree">
+      <field name="name">loan tree</field>
+      <field name="model">loan.loan</field>
+      <field name="arch" type="xml">
+        <form string="Session Form">
+          <header>
+            <field name="state" widget="statusbar"/>
+          </header>
+            <sheet>
+                <group>
+                  <group>
+                    <field name="employee"/>
+                    <field name="date"/>
+                    <field name="department"/>
+                  </group>
+                  <group>
+                    <field name="amount"/>
+                    <field name="returned"/>
+                    <field name="net"/>
+                  </group>
+                </group>
+                    <field name="description"/>
+            </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="loan.action_window">
+      <field name="name">loan window</field>
+      <field name="res_model">loan.loan</field>
+      <field name="view_mode">tree,form</field>
+    </record>    
+
+    <!-- Top menu item -->
+    <menuitem name="Loan" id="loan.menu_root"/>
+
+    <!-- menu categories -->
+    <menuitem name="Loan" id="loan.menu_1" parent="loan.menu_root"/>
+    
+    <!-- actions -->
+    <menuitem name="Loan" id="loan.menu_1_list" parent="loan.menu_1"
+              action="loan.action_window"/>    
+  </data>
+</openerp>

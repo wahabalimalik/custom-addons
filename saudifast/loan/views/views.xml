@@ -1,68 +1,164 @@
 <openerp>
   <data>
-    <!-- explicit list view definition -->
-    <record model="ir.ui.view" id="loan.list">
-      <field name="name">loan list</field>
-      <field name="model">loan.loan</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="employee"/>
-          <field name="start_date"/>
-          <field name="end_date"/>
-          <field name="avg_install"/>
-          <field name="department"/>
-          <field name="description"/>
-          <field name="amount"/>
-          <field name="returned"/>
-          <field name="remaining"/>
-        </tree>
-      </field>
-    </record>
+      <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%Loan%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 
-    <record model="ir.ui.view" id="loan.tree">
-      <field name="name">loan tree</field>
-      <field name="model">loan.loan</field>
-      <field name="arch" type="xml">
-        <form string="Session Form">
-          <header>
-            <field name="state" widget="statusbar"/>
-          </header>
-            <sheet>
-                <group>
-                  <group>
-                    <field name="employee"/>
-                    <field name="start_date"/>
-                    <field name="department"/>
-                    <field name="avg_install"/>
-                  </group>
-                  <group>
-                    <field name="amount"/>
-                    <field name="end_date"/>
-                    <field name="returned"/>
-                    <field name="remaining"/>
-                  </group>
-                </group>
-                    <field name="description"/>
-            </sheet>
-        </form>
-      </field>
-    </record>
+         <!--========================[Form View-START]=====================-->
+            <!-- explicit list view definition -->
+            <record model="ir.ui.view" id="loan.form">
+               <field name="name">loan form</field>
+               <field name="model">loan.loan</field>
+               <field name="arch" type="xml">
+                 <form string="Session Form">
+                  <header>
+                     <button name="update_history" type="object" string="Update History"/>
+                  </header>
+                     <sheet>
+                        <group>
+                           <group>
+                              <label for="name" class="oe_edit_only"/>
+                               <h1>
+                                   <field name="name" placeholder="Loan Detail"/>
+                               </h1>
+                           </group>
+                           <group></group>
+                           <group name="employee_details" string="Employee Details">
+                              <field name="employee"/>
+                              <field name="department"/>
+                           </group>
+                           <group>
+                              <group></group>
+                              <group></group>
+                              <field name="job_title"/>
+                           </group>
+                           <group name="loan_details" string="Loan Details">
+                              <field name="loan_amount"/>
+                              <field name="avg_install"/>
+                              <field name="returned"/>
+                              <field name="remaining"/>
+                           </group>
+                           <group name="dates" string="Dates">
+                              <field name="request_date"/>
+                              <field name="start_date"/>
+                              <field name="duration"/>
+                              <field name="end_date"/>
+                           </group>
+                        </group>
+                        <notebook>
+                           <page string="History">
+                              <group name="history" string="History">
+                              </group>
+                              <field name="history">
+                                  <tree editable="bottom">
+                                      <field name="name" />
+                                      <field name="amount"/>
 
-    <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="loan.action_window">
-      <field name="name">loan window</field>
-      <field name="res_model">loan.loan</field>
-      <field name="view_mode">tree,form</field>
-    </record>    
+                                  </tree>
+                              </field>
+                           </page>
+                        </notebook>
+                     </sheet>
+                 </form>
+               </field>
+            </record>
+         <!--************************[Form View-ENDS]**********************-->
 
-    <!-- Top menu item -->
-    <menuitem name="Loan" id="loan.menu_root"/>
+         <!--========================[Tree View-START]=====================-->
+            
+            <record model="ir.ui.view" id="loan.list">
+               <field name="name">loan list</field>
+               <field name="model">loan.loan</field>
+               <field name="arch" type="xml">
+                    <tree>
+                      <field name="name"/>
+                      <field name="employee"/>
+                      <field name="job_title"/>
+                      <field name="department"/>
+                      <field name="loan_amount"/>
+                      <field name="request_date"/>
+                      <field name="start_date"/>
+                      <field name="avg_install"/>
+                      <field name="duration"/>
+                      <field name="returned"/>
+                      <field name="end_date"/>
+                      <field name="remaining"/>
+                    </tree>
+               </field>
+            </record>
+         <!--************************[Tree View-ENDS]**********************-->
 
-    <!-- menu categories -->
-    <menuitem name="Loan" id="loan.menu_1" parent="loan.menu_root"/>
-    
-    <!-- actions -->
-    <menuitem name="Loan" id="loan.menu_1_list" parent="loan.menu_1"
-              action="loan.action_window"/>    
-  </data>
+         <!--========================[Action-START]========================-->
+
+            <!-- actions opening views on models -->
+            <record model="ir.actions.act_window" id="loan.action_window">
+            <field name="name">loan window</field>
+            <field name="res_model">loan.loan</field>
+            <field name="view_mode">tree,form</field>
+            </record>    
+         <!--************************[Action-ENDS]*************************-->
+
+         <!--========================[Menu-START]==========================-->
+
+            <!-- Top menu item -->
+            <menuitem name="Loan" id="loan.menu_root"/>
+
+            <!-- menu categories -->
+            <menuitem name="Loan" id="loan.menu_1" parent="loan.menu_root"/>
+
+            <!-- actions -->
+            <menuitem name="Loan" id="loan.menu_1_list" parent="loan.menu_1"
+                    action="loan.action_window"/>
+         <!--************************[Menu-ENDS]*************************-->
+      <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+      <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%Skip installments request%%%%%%%%%%%%%%%%% -->
+
+         <!--========================[Form View-START]=====================-->
+            <!-- explicit list view definition -->
+            <record model="ir.ui.view" id="loan_skip_form">
+               <field name="name">loan_skip_form</field>
+               <field name="model">loanskip.loanskip</field>
+               <field name="arch" type="xml">
+                  <form string="Loan Skip">
+                     <sheet>
+                        <group>
+                           <group>
+                              <!-- <label for="name" class="oe_edit_only"/> -->
+                               <h1>
+                                   <field name="reason" placeholder="Reason to Skip"/>
+                               </h1>
+                           </group>
+                           <group></group>
+                           <group>
+                              <field name="reason"/>
+                              <field name="employee"/>
+                           </group>
+                           <group>
+
+                              <field name="loan"/>
+                           </group>
+                        </group>
+                     </sheet>
+                  </form>
+               </field>
+            </record>
+         <!--************************[Form View-ENDS]**********************-->
+
+         <!--========================[Action-START]========================-->
+
+            <!-- actions opening views on models -->
+            <record model="ir.actions.act_window" id="loanskip_action_window">
+               <field name="name">Skip Installments Request</field>
+               <field name="res_model">loanskip.loanskip</field>
+               <field name="view_mode">tree,form</field>
+            </record>    
+         <!--************************[Action-ENDS]*************************-->
+
+         <!--========================[Menu-START]==========================-->
+            <!-- actions -->
+            <menuitem name="Skip Installments Request" id="loan.menu_2_list" parent="loan.menu_1"
+                    action="loanskip_action_window"/>
+         <!--************************[Menu-ENDS]*************************-->
+
+      <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+   </data>
 </openerp>

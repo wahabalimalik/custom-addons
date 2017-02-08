@@ -3,10 +3,10 @@
     'name': "loan",
 
     'summary': """
-        Long description of module's purpose""",
+        Lone management system""",
 
     'description': """
-        Long description of module's purpose
+        This module helps to manage the loan system 
     """,
 
     'author': "Wahab Ali Malik",

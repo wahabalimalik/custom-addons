@@ -4,7 +4,7 @@
 
          <!--========================[Form View-START]=====================-->
             <!-- explicit list view definition -->
-            <record model="ir.ui.view" id="loan.form">
+            <record model="ir.ui.view" id="loan_form">
                <field name="name">loan form</field>
                <field name="model">loan.loan</field>
                <field name="arch" type="xml">
@@ -64,7 +64,7 @@
 
          <!--========================[Tree View-START]=====================-->
             
-            <record model="ir.ui.view" id="loan.list">
+            <record model="ir.ui.view" id="loan_list">
                <field name="name">loan list</field>
                <field name="model">loan.loan</field>
                <field name="arch" type="xml">
@@ -89,7 +89,7 @@
          <!--========================[Action-START]========================-->
 
             <!-- actions opening views on models -->
-            <record model="ir.actions.act_window" id="loan.action_window">
+            <record model="ir.actions.act_window" id="loan_action_window">
             <field name="name">loan window</field>
             <field name="res_model">loan.loan</field>
             <field name="view_mode">tree,form</field>
@@ -99,14 +99,14 @@
          <!--========================[Menu-START]==========================-->
 
             <!-- Top menu item -->
-            <menuitem name="Loan" id="loan.menu_root"/>
+            <menuitem name="Loan" id="loan_menu_root"/>
 
             <!-- menu categories -->
-            <menuitem name="Loan" id="loan.menu_1" parent="loan.menu_root"/>
+            <menuitem name="Loan" id="loan_menu_1" parent="loan_menu_root"/>
 
             <!-- actions -->
-            <menuitem name="Loan" id="loan.menu_1_list" parent="loan.menu_1"
-                    action="loan.action_window"/>
+            <menuitem name="Loan" id="loan_menu_1_list" parent="loan_menu_1"
+                    action="loan_action_window"/>
          <!--************************[Menu-ENDS]*************************-->
       <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 
@@ -155,10 +155,9 @@
 
          <!--========================[Menu-START]==========================-->
             <!-- actions -->
-            <menuitem name="Skip Installments Request" id="loan.menu_2_list" parent="loan.menu_1"
+            <menuitem name="Skip Installments Request" id="loan_menu_2_list" parent="loan_menu_1"
                     action="loanskip_action_window"/>
          <!--************************[Menu-ENDS]*************************-->
-
       <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
    </data>
 </openerp>

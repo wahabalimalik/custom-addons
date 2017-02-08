@@ -14,7 +14,7 @@
     'category': 'hr',
     'version': '0.1',
 
-    'depends': ['base','hr'],
+    'depends': ['base','hr','hr_contract'],
 
     'data': [
         'templates.xml',

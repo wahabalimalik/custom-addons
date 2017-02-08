@@ -145,6 +145,12 @@
                                     </field>
                                 <!-- HR settings -->
                                     <field name="user_id" position="after">
+                                        <field name="vendor_no"/>
+                                        <field name="vehiclee" widget="many2many_tags"/>
+                                        <field name="project"/>
+                                        <field name="mol_no"/>
+                                        <field name="iban"/>
+                                        <field name="bank_code"/>
                                         <group string='Employment'>
                                             <field name="joining_date"/>
                                             <field name="leaving_date"/>
@@ -525,6 +531,13 @@
                                 </xpath>
                                 <field name="employee_id" position="after">
                                     <field name="employee_code"/>
+                                    <field name="package"/>
+                                    <field name="gosi"/>
+                                </field>
+                                <field name="type_id" position="after">
+                                    <field name="vehicle_attendance"/>
+                                    <field name="system_attendance"/>
+                                    <field name="line_manager_attendance"/>
                                 </field> 
                             </field>
                         </record>

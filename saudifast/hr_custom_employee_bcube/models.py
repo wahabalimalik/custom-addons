@@ -27,11 +27,15 @@ class Hr_Employee(models.Model):
     joining_date = fields.Date('Joining Date',required=True)
     leaving_date = fields.Date()
     serv_year = fields.Char('Total Service Year')
+    vendor_no = fields.Char("Vendor No")
+    vehiclee = fields.Many2many('vehicle.vehicle',string='Vehicle')
+    project = fields.Many2one('project.project')
+    mol_no = fields.Char("MOL No")
+    iban = fields.Char("IBAN")
+    bank_code = fields.Char("Bank Code")
     emp_status = fields.Selection([(
     	'Active','Active'),
     	('Inactive','Inactive'),],'Employee Status',required=True)
-
-
     dependent_id = fields.One2many('hr.dependent', 'dependent_relation', string="Dependent")
     qualifiction_id = fields.One2many('hr.qualification', 'qualification_relation_name', string="Qualifications")
     certification_id = fields.One2many('hr.certification', 'certification_relation', string="Certification")
@@ -546,8 +550,8 @@ class EOS(models.Model):
 			self.job = self.employee.job_id.name
 			self.employee_code = self.employee.employee_code
 
-# Contrat
-class Contrat(models.Model):
+# Contract
+class Contract(models.Model):
     _inherit = 'hr.contract'
 
     employee_code = fields.Char()
@@ -559,6 +563,11 @@ class Contrat(models.Model):
     children = fields.Integer()
     infants = fields.Integer()
     vac_des = fields.Many2one('vac_des.vac_des', string='Vacation Destination')
+    package = fields.Float()
+    gosi = fields.Boolean('GOSI')
+    vehicle_attendance = fields.Integer('Vehicle Attendance')
+    system_attendance = fields.Integer('System Attendance')
+    line_manager_attendance = fields.Integer('Line Manager Attendance')
 
 # Insurance
 class Insurance(models.Model):
@@ -668,3 +677,17 @@ class xxdocumentstype(models.Model):
 	_name = 'documents.type'
 
 	type_c = fields.Char('Type')
+
+# project
+class Project(models.Model):
+	_name = 'project.project'
+
+	name = fields.Char()
+
+
+# Vehicle
+class Vehicle(models.Model):
+	_name = 'vehicle.vehicle'
+
+	vehicle_model = fields.Char("Vehicle Model")
+	vehicle_no = fields.Char("Vehicle No")

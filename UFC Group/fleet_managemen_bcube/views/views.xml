@@ -1,0 +1,45 @@
+<openerp>
+  <data>
+        <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%Loan%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+            <!--========================[Form View-START]=====================-->
+                <record model="ir.ui.view" id="fleet_form">
+                    <field name="name">fleet form</field>
+                    <field name="model">account.invoice</field>
+                    <field name="priority" eval="16"/>
+                    <field name="inherit_id" ref="account.invoice_form"/>
+                    <field name="arch" type="xml">
+                        <field name="payment_term_id" position="after">
+                            <field name="challan_no"/>
+                            <field name="bilty_no"/>
+                            <field name="bc_from"/>
+                            <field name="to"/>
+                            <field name="region"/>
+                            <field name="quantity"/>
+                            <field name="weight"/>
+                        </field>
+                        <field name="team_id" position="after">
+                            <field name="distance"/>
+                            <field name="plan"/>
+                            <field name="sale_price"/>
+                            <group name="vander" string="vendor Details">
+                                <field name="truck_no"/>
+                                <field name="shipper_invoice_no"/>
+                                <field name="purchase_price"/>
+                                <field name="profit"/>
+                            </group>
+                            <group></group>
+                            <group>
+                                <field name="supplier"/>
+                            </group>
+                            <group>
+                                <button name="advance_btn" type="object" string="⇒ Update" class="oe_button oe_form_button oe_link"/>
+                            </group>
+                        </field>
+                    </field>
+                </record>
+            <!--************************[Form View-ENDS]**********************-->
+
+      <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+   </data>
+</openerp>
